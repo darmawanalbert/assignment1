@@ -84,7 +84,6 @@ def distance_matrix_to_coordinates_MDS(matrix):
     embedding = MDS(n_components=2)
     np_arr = convert_to_numpy_array(matrix)
     matrix_2dims = embedding.fit_transform(np_arr)
-    print(matrix_2dims)
     return matrix_2dims
 
 
@@ -109,6 +108,7 @@ def mds_scatterplot(mds_matrix):
     y_coords = [x[1] for x in mds_matrix]
     rng = np.random.RandomState(0)
     colors = rng.rand(17)
+    plt.figsize(12, 12)
     plt.scatter(x_coords, y_coords, label=gene_names, c=colors, cmap='viridis')
     for i, accession in enumerate(gene_names):
         plt.annotate(accession, (x_coords[i] + 5, y_coords[i] + 5))

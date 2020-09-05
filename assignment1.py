@@ -163,8 +163,8 @@ def init_distance_matrix(genes):
 
 
 # Lets print the distance matrix to make sure it worked. 
-#distance_matrix = init_distance_matrix(ribosome_genes)
-#print_distance_matrix(distance_matrix)
+distance_matrix = init_distance_matrix(ribosome_genes)
+print_distance_matrix(distance_matrix)
 
 
 # Time to fill in the matrix with distances. 
@@ -209,15 +209,15 @@ distance_matrix = init_distance_matrix(ribosome_genes)
 ########### SECTION 2: CLUSTERING ############
 ##############################################
 from utilities import initialise_centroids, average_point, assign_points, plot_kmeans, points_equal, euclidean_distance
-# From the heatmaps, it should seem like there are a few clusters in the data
+# From the heatmaps, it seems like there are a few clusters in the data
 # First, lets convert the pairwise distances to 2D coordinates. 
 # This is possible using MDS (link to information)
 # After we have transformed the distance matrix to 2D coordinates, we can plot it to see if any clusters are evident.
 
 # provided block
 kmer_distances_xy = distance_matrix_to_coordinates_MDS(kmer_distance_matrix)
-#sw_distances_xy = distance_matrix_to_coordinates_MDS(sw_alignment_distance_matrix)
-#mds_scatterplot(distances_xy)
+sw_distances_xy = distance_matrix_to_coordinates_MDS(sw_alignment_distance_matrix)
+mds_scatterplot(kmer_distances_xy)
 
 
 # seems like there is some clustering happening. 
@@ -257,6 +257,7 @@ def kmeans(data, k):
     return centroids, cluster_assignments
 
 
+# lets check it works
 centroids, cluster_assignments = kmeans(kmer_distances_xy, 2)
 #plot_kmeans(distances_xy, centroids, cluster_assignments, 2)
 
